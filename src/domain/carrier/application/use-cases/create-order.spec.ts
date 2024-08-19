@@ -12,10 +12,8 @@ describe('Create Order', () => {
 
   it('should be able to create a order', async () => {
     const result = await sut.handle({
-      authorId: 'author-01',
-      title: 'An example for title',
-      content: 'An example for response',
-      attachmentsIds: ['1', '2'],
+      driverId: 'author-01',
+      name: 'First product',
     })
 
     expect(result.isRight()).toBe(true)

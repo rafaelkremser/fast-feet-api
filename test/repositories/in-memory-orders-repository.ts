@@ -5,9 +5,6 @@ import { Order } from '@/domain/carrier/enterprise/entities/order'
 export class InMemoryOrdersRepository implements OrdersRepository {
   public items: Order[] = []
 
-  constructor(
-  ) {}
-
   async create(order: Order) {
     this.items.push(order)
 

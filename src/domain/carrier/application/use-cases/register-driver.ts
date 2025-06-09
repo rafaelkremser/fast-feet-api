@@ -22,7 +22,7 @@ type RegisterDriverUseCaseResponse = Either<
 export class RegisterDriverUseCase {
   constructor(
     private driversRepository: DriversRepository,
-    private hashGenerator: HashGenerator
+    private hashGenerator: HashGenerator,
   ) {}
 
   async handle({

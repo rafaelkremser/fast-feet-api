@@ -57,7 +57,7 @@ export class Order extends AggregateRoot<OrderProps> {
         ...props,
         createdAt: props.createdAt ?? new Date(),
       },
-      id
+      id,
     )
 
     return order

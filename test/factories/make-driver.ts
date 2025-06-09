@@ -9,7 +9,7 @@ import {
 
 export function makeDriver(
   override: Partial<DriverProps> = {},
-  id?: UniqueEntityID
+  id?: UniqueEntityID,
 ) {
   const driver = Driver.create(
     {
@@ -18,7 +18,7 @@ export function makeDriver(
       password: faker.internet.password(),
       ...override,
     },
-    id
+    id,
   )
 
   return driver

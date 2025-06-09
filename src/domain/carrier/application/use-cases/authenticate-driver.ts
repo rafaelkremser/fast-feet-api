@@ -22,7 +22,7 @@ export class AuthenticateDriverUseCase {
   constructor(
     private driversRepository: DriversRepository,
     private hashComparer: HashComparer,
-    private encrypter: Encrypter
+    private encrypter: Encrypter,
   ) {}
 
   async handle({
@@ -37,7 +37,7 @@ export class AuthenticateDriverUseCase {
 
     const isPasswordValid = await this.hashComparer.compare(
       password,
-      driver.password
+      driver.password,
     )
 
     if (!isPasswordValid) {

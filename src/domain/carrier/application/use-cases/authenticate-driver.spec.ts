@@ -17,7 +17,7 @@ describe('Authenticate Driver', () => {
     sut = new AuthenticateDriverUseCase(
       inMemoryDriversRepository,
       fakeHasher,
-      fakeEncrypter
+      fakeEncrypter,
     )
   })
 

@@ -3,7 +3,8 @@ import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
 
 export interface OrderProps {
-  name: string
+  clientName: string
+  address: string
   status: string
   driverId: UniqueEntityID
   finishAt?: Date | null
@@ -12,8 +13,12 @@ export interface OrderProps {
 }
 
 export class Order extends AggregateRoot<OrderProps> {
-  get name() {
-    return this.props.name
+  get clientName() {
+    return this.props.clientName
+  }
+
+  get address() {
+    return this.props.address
   }
 
   get status() {
@@ -40,8 +45,8 @@ export class Order extends AggregateRoot<OrderProps> {
     this.props.updatedAt = new Date()
   }
 
-  set name(name: string) {
-    this.props.name = name
+  set clientName(clientName: string) {
+    this.props.clientName = clientName
 
     this.touch()
   }

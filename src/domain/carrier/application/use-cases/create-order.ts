@@ -5,7 +5,8 @@ import { Order } from '../../enterprise/entities/order'
 import { OrdersRepository } from '../repositories/orders-repository'
 
 interface CreateOrderUseCaseRequest {
-  name: string
+  clientName: string
+  address: string
   driverId: string
 }
 
@@ -21,11 +22,13 @@ export class CreateOrderUseCase {
   constructor(private ordersRepository: OrdersRepository) {}
 
   async handle({
-    name,
+    clientName,
+    address,
     driverId,
   }: CreateOrderUseCaseRequest): Promise<CreateOrderUseCaseResponse> {
     const order = Order.create({
-      name,
+      clientName,
+      address,
       status: 'Waiting',
       driverId: new UniqueEntityID(driverId),
     })

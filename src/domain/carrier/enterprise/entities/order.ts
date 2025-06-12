@@ -31,6 +31,14 @@ export class Order extends AggregateRoot<OrderProps> {
     return this.props.driverId
   }
 
+  get pickedUpAt() {
+    return this.props.pickedUpAt
+  }
+
+  get deliveredAt() {
+    return this.props.deliveredAt
+  }
+
   get finishAt() {
     return this.props.finishAt
   }
@@ -64,6 +72,16 @@ export class Order extends AggregateRoot<OrderProps> {
 
   set driverId(driverId: UniqueEntityID | null) {
     this.props.driverId = driverId
+    this.touch()
+  }
+
+  set pickedUpAt(date: Date | null) {
+    this.props.pickedUpAt = date
+    this.touch()
+  }
+
+  set deliveredAt(date: Date | null | undefined) {
+    this.props.deliveredAt = date
     this.touch()
   }
 

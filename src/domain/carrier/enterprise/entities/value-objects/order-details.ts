@@ -9,6 +9,7 @@ export interface OrderDetailsProps {
   driverId: UniqueEntityID | null
   pickedUpAt: Date | null
   deliveredAt?: Date | null
+  finishAt?: Date | null
   createdAt: Date
   updatedAt?: Date | null
 }

@@ -1,4 +1,3 @@
-import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Either, right } from '@/core/either'
 import { Injectable } from '@nestjs/common'
 import { Order } from '../../enterprise/entities/order'
@@ -7,7 +6,6 @@ import { OrdersRepository } from '../repositories/orders-repository'
 interface CreateOrderUseCaseRequest {
   clientName: string
   address: string
-  driverId: string
 }
 
 type CreateOrderUseCaseResponse = Either<
@@ -24,13 +22,12 @@ export class CreateOrderUseCase {
   async handle({
     clientName,
     address,
-    driverId,
   }: CreateOrderUseCaseRequest): Promise<CreateOrderUseCaseResponse> {
     const order = Order.create({
       clientName,
       address,
       status: 'Waiting',
-      driverId: new UniqueEntityID(driverId),
+      driverId: null,
     })
 
     await this.ordersRepository.create(order)

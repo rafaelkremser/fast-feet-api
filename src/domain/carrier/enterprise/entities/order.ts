@@ -6,7 +6,7 @@ export interface OrderProps {
   clientName: string
   address: string
   status: string
-  driverId: UniqueEntityID
+  driverId: UniqueEntityID | null
   finishAt?: Date | null
   createdAt: Date
   updatedAt?: Date | null
@@ -26,7 +26,7 @@ export class Order extends AggregateRoot<OrderProps> {
   }
 
   get driverId() {
-    return this.props.status
+    return this.props.driverId
   }
 
   get finishAt() {
@@ -47,12 +47,32 @@ export class Order extends AggregateRoot<OrderProps> {
 
   set clientName(clientName: string) {
     this.props.clientName = clientName
+    this.touch()
+  }
 
+  set address(address: string) {
+    this.props.address = address
     this.touch()
   }
 
   set status(status: string) {
     this.props.status = status
+    this.touch()
+  }
+
+  set driverId(driverId: UniqueEntityID | null) {
+    this.props.driverId = driverId
+    this.touch()
+  }
+
+  set finishAt(date: Date | null | undefined) {
+    this.props.finishAt = date
+    this.touch()
+  }
+
+  public assignToDriver(driverId: UniqueEntityID) {
+    this.props.driverId = driverId
+    this.props.status = 'assigned'
     this.touch()
   }
 

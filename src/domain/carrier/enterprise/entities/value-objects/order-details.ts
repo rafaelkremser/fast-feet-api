@@ -3,6 +3,7 @@ import { ValueObject } from '@/core/entities/value-object'
 
 export interface OrderDetailsProps {
   orderId: UniqueEntityID
+  trackingCode: string
   status: string
   recipientId: UniqueEntityID
   recipientName: string

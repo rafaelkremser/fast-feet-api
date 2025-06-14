@@ -4,6 +4,7 @@ import { Optional } from '@/core/types/optional'
 import { OrderStatus } from '../enums/order-status'
 
 export interface OrderProps {
+  trackingCode: string
   status: OrderStatus
   recipientId: UniqueEntityID
   driverId: UniqueEntityID | null

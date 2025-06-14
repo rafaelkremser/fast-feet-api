@@ -3,7 +3,7 @@ import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 export interface DriverProps {
   name: string
-  cpf: string
+  document: string
   password: string
 }
 
@@ -12,8 +12,8 @@ export class Driver extends Entity<DriverProps> {
     return this.props.name
   }
 
-  get cpf() {
-    return this.props.cpf
+  get document() {
+    return this.props.document
   }
 
   get password() {

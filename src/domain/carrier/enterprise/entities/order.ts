@@ -1,11 +1,11 @@
 import { AggregateRoot } from '@/core/entities/aggregate-root'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
+import { OrderStatus } from '../enums/order-status'
 
 export interface OrderProps {
-  clientName: string
-  address: string
-  status: string
+  status: OrderStatus
+  recipientId: UniqueEntityID
   driverId: UniqueEntityID | null
   pickedUpAt: Date | null
   deliveredAt?: Date | null
@@ -15,12 +15,8 @@ export interface OrderProps {
 }
 
 export class Order extends AggregateRoot<OrderProps> {
-  get clientName() {
-    return this.props.clientName
-  }
-
-  get address() {
-    return this.props.address
+  get recipientId() {
+    return this.props.recipientId
   }
 
   get status() {
@@ -55,17 +51,12 @@ export class Order extends AggregateRoot<OrderProps> {
     this.props.updatedAt = new Date()
   }
 
-  set clientName(clientName: string) {
-    this.props.clientName = clientName
+  set recipientId(recipientId: UniqueEntityID) {
+    this.props.recipientId = recipientId
     this.touch()
   }
 
-  set address(address: string) {
-    this.props.address = address
-    this.touch()
-  }
-
-  set status(status: string) {
+  set status(status: OrderStatus) {
     this.props.status = status
     this.touch()
   }
@@ -92,7 +83,7 @@ export class Order extends AggregateRoot<OrderProps> {
 
   public assignToDriver(driverId: UniqueEntityID) {
     this.props.driverId = driverId
-    this.props.status = 'assigned'
+    this.props.status = OrderStatus.assigned
     this.touch()
   }
 

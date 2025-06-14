@@ -4,7 +4,8 @@ import { ValueObject } from '@/core/entities/value-object'
 export interface OrderDetailsProps {
   orderId: UniqueEntityID
   status: string
-  clientName: string
+  recipientId: UniqueEntityID
+  recipientName: string
   address: string
   driverId: UniqueEntityID | null
   pickedUpAt: Date | null
@@ -31,8 +32,12 @@ export class OrderDetails extends ValueObject<OrderDetailsProps> {
     return this.props.driverId
   }
 
-  get clientName() {
-    return this.props.clientName
+  get recipientId() {
+    return this.props.recipientId
+  }
+
+  get recipientName() {
+    return this.props.recipientName
   }
 
   get pickedUpAt() {
